@@ -3227,10 +3227,36 @@ More Members?
     ════════════════════════════════════════ */
     (function() {
       const videoMap = {
-        "nwfcu":   { embed: `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1027426409?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="NWFCU - Brand Bridge"></iframe></div>` },
-        "harvard": { embed: `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1092842564?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Harvard FCU Is Here"></iframe></div>` },
-        "jdcu":    { embed: `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/949557005?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Jeanne D'Arc - The Savings Journey"></iframe></div>` }
+        "nwfcu":   { id: "1027426409", title: "NWFCU – Brand Bridge" },
+        "harvard": { id: "1092842564", title: "Harvard FCU – Is Here" },
+        "jdcu":    { id: "949557005",  title: "Jeanne D'Arc – The Savings Journey" }
       };
+
+      var vimeoApiLoaded = false;
+      function ensureVimeoApi(cb) {
+        if (vimeoApiLoaded) { cb && cb(); return; }
+        var s = document.createElement('script');
+        s.src = 'https://player.vimeo.com/api/player.js';
+        s.onload = function() { vimeoApiLoaded = true; cb && cb(); };
+        document.head.appendChild(s);
+      }
+
+      function buildFacade(period) {
+        const v = videoMap[period];
+        return `<div class="vimeo-facade" data-period="${period}" style="padding:56.25% 0 0 0;position:relative;cursor:pointer;background:#0a0a0e;border-radius:0.5rem;overflow:hidden;">
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;">
+            <div style="width:4rem;height:4rem;border-radius:50%;background:rgba(255,255,255,0.12);border:2px solid rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;transition:background 0.2s;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+            <span style="font-size:0.8125rem;color:rgba(255,255,255,0.5);letter-spacing:0.04em;">${v.title}</span>
+          </div>
+        </div>`;
+      }
+
+      function buildEmbed(period) {
+        const v = videoMap[period];
+        return `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/${v.id}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="${v.title}"></iframe></div>`;
+      }
 
       const metricData = {
         "nwfcu":   { a:{label:"Brand Scale",value:4600000,suffix:" Impressions"}, b:{label:"OTT Completion",value:99.5,suffix:"% VCR"}, c:{label:"New Users",value:29000,suffix:" Users"}, d:{label:"Funded",value:11700000,prefix:"$",suffix:""} },
@@ -3249,7 +3275,11 @@ More Members?
       const periods  = document.querySelectorAll(".nwfcu-period");
 
       function loadVideo(period) {
-        videoContainer.innerHTML = videoMap[period].embed;
+        videoContainer.innerHTML = buildFacade(period);
+        videoContainer.querySelector('.vimeo-facade').addEventListener('click', function() {
+          ensureVimeoApi();
+          videoContainer.innerHTML = buildEmbed(period);
+        });
       }
 
       function updateMetrics(period) {
@@ -4087,23 +4117,5 @@ More Members?
     })();
   </script>
 
-  <script>
-    // Lazy load Vimeo player
-    (function() {
-      var vimeoLoaded = false;
-      var vimeoTarget = document.querySelector('.nwfcu-wrap') || document.querySelector('#results');
-      if (!vimeoTarget) return;
-      var vimeoObserver = new IntersectionObserver(function(entries) {
-        if (entries[0].isIntersecting && !vimeoLoaded) {
-          vimeoLoaded = true;
-          var s = document.createElement('script');
-          s.src = 'https://player.vimeo.com/api/player.js';
-          document.head.appendChild(s);
-          vimeoObserver.disconnect();
-        }
-      }, { rootMargin: '200px' });
-      vimeoObserver.observe(vimeoTarget);
-    })();
-  </script>
 </body>
 </html>
