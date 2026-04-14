@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-
-  <script> (function(ss,ex){ window.ldfdr=window.ldfdr||function(){(ldfdr._q=ldfdr._q||[]).push([].slice.call(arguments));}; (function(d,s){ fs=d.getElementsByTagName(s)[0]; function ce(src){ var cs=d.createElement(s); cs.src=src; cs.async=1; fs.parentNode.insertBefore(cs,fs); }; ce('https://sc.lfeeder.com/lftracker_v1_'+ss+(ex?'_'+ex:'')+'.js'); })(document,'script'); })('lAxoEaKdgld8OYGd'); </script>
-  <base href="https://lp.getjxm.com/lp00260413/">  
+  <base href="https://lp.getjxm.com/lp00260413/">
   <link rel="preload" as="image" href="images/womanincar.webp">
   <meta charset="UTF-8">
- 
+  <!-- Leadfeeder -->
+  <script> (function(ss,ex){ window.ldfdr=window.ldfdr||function(){(ldfdr._q=ldfdr._q||[]).push([].slice.call(arguments));}; (function(d,s){ fs=d.getElementsByTagName(s)[0]; function ce(src){ var cs=d.createElement(s); cs.src=src; cs.async=1; fs.parentNode.insertBefore(cs,fs); }; ce('https://sc.lfeeder.com/lftracker_v1_'+ss+(ex?'_'+ex:'')+'.js'); })(document,'script'); })('lAxoEaKdgld8OYGd'); </script>
+  <!-- End Leadfeeder -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NHFCU x JXM: Ready to Grow Membership in the Capital Region?</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 311.43 102.75'%3E%3Cpath fill='white' d='M102.77,11.38v39.99c0,27.94-22.54,50.66-50.25,50.66-.08,0-.17,0-.25,0-.18,0-.35,0-.53,0C23.93,102.04,1.08,79.29.71,51.28c-.02-1.55.24-3.11.86-4.54,1.76-4.04,5.62-6.44,9.73-6.44h30.64V11.38c0-5.9,4.74-10.68,10.59-10.68h39.66c5.85,0,10.59,4.78,10.59,10.68ZM204.82,6.04c-1.9-3.3-5.41-5.33-9.2-5.33h-77.52c-3.8,0-7.31,2.03-9.2,5.33-1.9,3.3-1.9,7.36,0,10.66l19.59,34.02-19.59,34.02c-1.9,3.3-1.9,7.36,0,10.66,1.9,3.3,5.41,5.33,9.2,5.33h77.52c4.7,0,8.96-3.11,10.27-7.88.76-2.78.28-5.76-1.16-8.27l-19.5-33.86,19.59-34.02c1.9-3.3,1.9-7.36,0-10.66ZM304.16,1.78c-3.97-1.65-8.54-.74-11.57,2.31l-31.88,31.93-31.88-31.93c-3.04-3.04-7.61-3.95-11.57-2.31-3.97,1.65-6.56,5.53-6.56,9.83v78.9c0,5.87,4.76,10.64,10.62,10.64h78.77c5.87,0,10.62-4.76,10.62-10.64V11.6c0-4.3-2.59-8.18-6.56-9.83Z'/%3E%3C/svg%3E">
@@ -852,10 +852,6 @@
 
   </style>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WHZDNSZW"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
 
   <!-- ════════════════════════════════════════
        STICKY TOP NAV
@@ -1231,6 +1227,7 @@
     </div>
   </section>
 
+  <!-- ════════════════════════════════════════
        TEXT GENERATE SECTION
   ════════════════════════════════════════ -->
   <section class="tg-section" id="truth">
@@ -3452,7 +3449,10 @@
     /* ── Size the container so layout doesn't collapse ── */
     function sizeContainer() {
       const activeCard = cards[activeIndex];
-      stackOuter.style.height = (PEEK_OFFSET + activeCard.offsetHeight) + 'px';
+      // stack-outer uses border-box and has padding-top: PEEK_OFFSET,
+      // so we must add PEEK_OFFSET twice: once for the padding and once
+      // for the card's top: PEEK_OFFSET offset.
+      stackOuter.style.height = (PEEK_OFFSET * 2 + activeCard.offsetHeight) + 'px';
     }
 
     /* ── Apply transforms to all cards ── */
