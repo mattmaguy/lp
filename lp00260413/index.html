@@ -1348,7 +1348,7 @@
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H7V10l4.76-9.52a.5.5 0 0 1 .86 0L15 5.88z"/></svg>
           Qualifications
         </div>
-        <h2 class="section-title">We're Confident We Can<br><span class="wwd-grad">Help NHFCU Grow</span></h2>
+        <h2 class="section-title">We're Confident We Can Help <span class="wwd-grad">NHFCU Grow</span></h2>
       </div>
 
       <div class="wwd-grid">
@@ -1968,6 +1968,12 @@
 
     <div class="founders-container">
 
+      <!-- Mobile-only eyebrow (above photo) -->
+      <div class="section-badge founders-eyebrow-mobile" style="width:fit-content;margin:0 auto;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Jim &amp; Matt
+      </div>
+
       <!-- Image column -->
       <div class="founders-image-col">
         <div class="founders-image-wrap">
@@ -1979,7 +1985,7 @@
       <!-- Content column -->
       <div class="founders-content-col">
 
-        <div class="section-badge" style="margin-bottom:1.5rem;width:fit-content;">
+        <div class="section-badge founders-eyebrow-desktop" style="margin-bottom:1.5rem;width:fit-content;">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           Jim &amp; Matt
         </div>
@@ -2061,7 +2067,7 @@
         Hear From Our<br>
         <span class="t-grad">Community</span>
       </h2>
-      <p class="section-desc">Real results from real members. Swipe or drag to explore.</p>
+      <p class="section-desc">Real results from our client partners. Swipe or drag to explore.</p>
 
       <!-- Stack -->
       <div class="stack-outer" id="stackOuter">
@@ -3264,6 +3270,14 @@
       grid-template-columns: 1fr;
       gap: 3rem;
       align-items: center;
+    }
+
+    /* Eyebrow: show above photo on mobile, inside content column on desktop */
+    .founders-eyebrow-mobile { display: inline-flex; margin-bottom: -1rem; }
+    .founders-eyebrow-desktop { display: none; }
+    @media (min-width: 768px) {
+      .founders-eyebrow-mobile { display: none; }
+      .founders-eyebrow-desktop { display: inline-flex; }
     }
 
     /* ── Image column ── */
